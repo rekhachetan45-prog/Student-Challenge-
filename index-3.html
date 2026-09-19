@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Challenge - Fun Games</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef2ff,#fff7ed);color:#172033}
+header{background:linear-gradient(135deg,#4f46e5,#9333ea);color:#fff;text-align:center;padding:28px 15px;border-radius:0 0 30px 30px;box-shadow:0 8px 25px #0002}
+header h1{margin:0;font-size:32px} header p{margin:8px 0 0}
+.container{max-width:900px;margin:auto;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:15px 0}
+.stat{background:#fff;padding:13px 5px;text-align:center;border-radius:15px;box-shadow:0 5px 18px #0001;font-weight:bold}
+.stat span{display:block;font-size:20px;color:#4f46e5;margin-top:4px}
+.card{background:#fff;padding:20px;margin:15px 0;border-radius:22px;box-shadow:0 7px 22px #0001}
+h2{margin-top:0;color:#4f46e5}
+button{border:0;border-radius:13px;padding:12px 16px;margin:5px;background:#4f46e5;color:white;font-size:15px;font-weight:bold;cursor:pointer}
+button:hover{transform:translateY(-1px);opacity:.92}
+button:disabled{opacity:.55;cursor:not-allowed}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.menu button{padding:17px}
+.option{display:block;width:100%;text-align:left;background:#f1f5f9;color:#172033;margin:8px 0}
+.good{background:#dcfce7!important;color:#166534!important}
+.bad{background:#fee2e2!important;color:#991b1b!important}
+input{padding:13px;border:1px solid #cbd5e1;border-radius:12px;font-size:16px;max-width:100%}
+.msg{font-weight:bold;min-height:22px}
+.timer{font-size:38px;font-weight:bold;text-align:center;color:#dc2626}
+.big{font-size:30px;text-align:center;letter-spacing:7px;font-weight:bold}
+.hidden{display:none}
+.progress{height:9px;background:#e5e7eb;border-radius:10px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;width:0;background:#4f46e5;transition:.3s}
+footer{text-align:center;padding:22px;color:#64748b}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.menu{grid-template-columns:1fr}header h1{font-size:27px}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🎓 Student Challenge</h1>
+<p>🎮 More Games • 🧠 More Challenges • 🏆 More Fun</p>
+</header>
+
+<div class="container">
+<div class="stats">
+  <div class="stat">⭐ Score<span id="score">0</span></div>
+  <div class="stat">🔥 Streak<span id="streak">0</span></div>
+  <div class="stat">❤️ Lives<span id="lives">3</span></div>
+  <div class="stat">🏅 Level<span id="level">1</span></div>
+</div>
+
+<div class="card">
+<h2>🎮 Choose Your Game</h2>
+<div class="menu">
+<button onclick="showGame('quiz')">🧠 Quiz Battle</button>
+<button onclick="showGame('math')">➕ Math Rush</button>
+<button onclick="showGame('memory')">🧩 Memory Master</button>
+<button onclick="showGame('word')">🔤 Word Scramble</button>
+<button onclick="showGame('guess')">🎯 Number Guess</button>
+<button onclick="showGame('speed')">⚡ Speed Challenge</button>
+</div>
+</div>
+
+<div id="quiz" class="card game hidden">
+<h2>🧠 Quiz Battle</h2><p id="q"></p><div id="opts"></div><p id="quizMsg" class="msg"></p>
+<button onclick="nextQuiz()">➡️ Next</button>
+</div>
+
+<div id="math" class="card game hidden">
+<h2>➕ Math Rush</h2><p>Solve this:</p><div class="big" id="mathQ"></div>
+<input id="mathA" type="number" placeholder="Answer"><button onclick="checkMath()">Check</button>
+<p id="mathMsg" class="msg"></p>
+</div>
+
+<div id="memory" class="card game hidden">
+<h2>🧩 Memory Master</h2><p>Remember the sequence for a few seconds!</p>
+<div class="big" id="memDisplay">READY</div>
+<button onclick="startMemory()">▶️ Start</button>
+<div id="memInput" class="hidden"><input id="memA" placeholder="Enter sequence"><button onclick="checkMemory()">Check</button></div>
+<p id="memMsg" class="msg"></p>
+</div>
+
+<div id="word" class="card game hidden">
+<h2>🔤 Word Scramble</h2><p>Unscramble this word:</p><div class="big" id="scramble"></div>
+<input id="wordA" placeholder="Your answer"><button onclick="checkWord()">Check</button>
+<p id="wordMsg" class="msg"></p>
+</div>
+
+<div id="guess" class="card game hidden">
+<h2>🎯 Number Guess</h2><p>Guess a number between <b>1 and 50</b>.</p>
+<input id="guessA" type="number" placeholder="1-50"><button onclick="checkGuess()">Guess</button>
+<p id="guessMsg" class="msg"></p>
+</div>
+
+<div id="speed" class="card game hidden">
+<h2>⚡ Speed Challenge</h2>
+<p>Click START, then press the button <b>10 times</b> as quickly as you can!</p>
+<div class="timer" id="speedTimer">10</div>
+<button onclick="startSpeed()">🚀 START</button>
+<button id="tapBtn" class="hidden" onclick="tapSpeed()">TAP!</button>
+<p id="speedMsg" class="msg"></p>
+</div>
+
+<div class="card">
+<h2>🏆 Your Progress</h2>
+<div class="progress"><div id="bar"></div></div>
+<p id="progressText">Earn points to unlock higher levels!</p>
+<button onclick="resetGame()">🔄 Reset All Progress</button>
+</div>
+</div>
+
+<footer>© 2026 Student Challenge • Learn, Play & Challenge Yourself 🎉</footer>
+
+<script>
+let score=+localStorage.getItem("scScore")||0;
+let streak=+localStorage.getItem("scStreak")||0;
+let lives=+localStorage.getItem("scLives"); if(!lives) lives=3;
+let level=Math.floor(score/100)+1;
+let quizIndex=0,mathAnswer=0,secret=0,memValue="",speedCount=0,speedStart=0;
+let speedRunning=false;
+
+const quiz=[
+["Which planet is called the Red Planet?",["Earth","Mars","Venus","Saturn"],"Mars"],
+["What is 12 × 2?",["20","22","24","26"],"24"],
+["How many continents are there?",["5","6","7","8"],"7"],
+["Capital of India?",["Mumbai","Jaipur","New Delhi","Delhi"],"New Delhi"],
+["Which gas do plants mainly use for photosynthesis?",["Oxygen","Carbon Dioxide","Nitrogen","Hydrogen"],"Carbon Dioxide"],
+["How many sides does a hexagon have?",["5","6","7","8"],"6"]
+];
+const words=["JAVASCRIPT","CHALLENGE","STUDENT","COMPUTER","PUZZLE","LEARNING","SCHOOL","SCIENCE"];
+
+function save(){
+ level=Math.floor(score/100)+1;
+ localStorage.setItem("scScore",score);localStorage.setItem("scStreak",streak);localStorage.setItem("scLives",lives);
+ document.getElementById("score").textContent=score;
+ document.getElementById("streak").textContent=streak;
+ document.getElementById("lives").textContent=lives;
+ document.getElementById("level").textContent=level;
+ document.getElementById("bar").style.width=(score%100)+"%";
+ document.getElementById("progressText").textContent="Level "+level+" • "+(100-score%100)+" points to next level";
+}
+function points(n=10){score+=n;streak++;save()}
+function wrong(){
+ streak=0;lives--;save();
+ if(lives<=0){alert("💔 Game Over! Your score was "+score+". Lives restored to 3.");lives=3;save();}
+}
+function showGame(id){
+ document.querySelectorAll(".game").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ if(id==="quiz")loadQuiz();
+ if(id==="math")newMath();
+ if(id==="word")newWord();
+ if(id==="guess")newGuess();
+}
+function loadQuiz(){
+ let x=quiz[quizIndex%quiz.length];document.getElementById("q").textContent=x[0];
+ let box=document.getElementById("opts");box.innerHTML="";document.getElementById("quizMsg").textContent="";
+ x[1].forEach(o=>{let b=document.createElement("button");b.className="option";b.textContent=o;b.onclick=()=>answerQuiz(b,o,x[2]);box.appendChild(b)})
+}
+function answerQuiz(b,a,c){
+ document.querySelectorAll("#opts button").forEach(x=>x.disabled=true);
+ if(a===c){b.classList.add("good");document.getElementById("quizMsg").textContent="🎉 Correct! +10";points(10)}
+ else{b.classList.add("bad");document.getElementById("quizMsg").textContent="❌ Wrong!";wrong()}
+}
+function nextQuiz(){quizIndex++;loadQuiz()}
+function newMath(){
+ let a=Math.floor(Math.random()*30)+1,b=Math.floor(Math.random()*30)+1;
+ mathAnswer=a+b;document.getElementById("mathQ").textContent=a+" + "+b;document.getElementById("mathA").value="";document.getElementById("mathMsg").textContent="";
+}
+function checkMath(){
+ let m=document.getElementById("mathMsg");
+ if(+document.getElementById("mathA").value===mathAnswer){m.textContent="🎉 Correct! +15";points(15);newMath()}
+ else{m.textContent="❌ Try again!";wrong()}
+}
+function startMemory(){
+ let len=Math.min(4+level,8);memValue="";
+ for(let i=0;i<len;i++)memValue+=Math.floor(Math.random()*10);
+ document.getElementById("memDisplay").textContent=memValue;
+ document.getElementById("memInput").classList.add("hidden");document.getElementById("memMsg").textContent="";
+ setTimeout(()=>{document.getElementById("memDisplay").textContent="❓ ".repeat(len);document.getElementById("memInput").classList.remove("hidden")},Math.max(1200,2200-level*100));
+}
+function checkMemory(){
+ let a=document.getElementById("memA").value.replace(/\s/g,""),m=document.getElementById("memMsg");
+ if(a===memValue){m.textContent="🧠 Amazing memory! +20";points(20)}
+ else{m.textContent="❌ Memory failed!";wrong()}
+}
+function shuffle(s){return s.split("").sort(()=>Math.random()-.5).join("")}
+let word="";
+function newWord(){
+ word=words[Math.floor(Math.random()*words.length)];let s=shuffle(word);
+ if(s===word)s=shuffle(word);document.getElementById("scramble").textContent=s;
+ document.getElementById("wordA").value="";document.getElementById("wordMsg").textContent="";
+}
+function checkWord(){
+ let m=document.getElementById("wordMsg");
+ if(document.getElementById("wordA").value.trim().toUpperCase()===word){m.textContent="🎉 Correct! +15";points(15);newWord()}
+ else{m.textContent="❌ Try again!";wrong()}
+}
+function newGuess(){
+ secret=Math.floor(Math.random()*50)+1;document.getElementById("guessA").value="";document.getElementById("guessMsg").textContent="";
+}
+function checkGuess(){
+ let n=+document.getElementById("guessA").value,m=document.getElementById("guessMsg");
+ if(n===secret){m.textContent="🎯 You got it! +25";points(25);newGuess()}
+ else if(n<secret)m.textContent="⬆️ Too low!";
+ else m.textContent="⬇️ Too high!";
+}
+function startSpeed(){
+ if(speedRunning)return;speedRunning=true;speedCount=0;speedStart=Date.now();
+ document.getElementById("tapBtn").classList.remove("hidden");document.getElementById("speedMsg").textContent="GO! TAP 10 TIMES!";
+ let end=Date.now()+10000;
+ let timer=setInterval(()=>{
+  let left=Math.max(0,Math.ceil((end-Date.now())/1000));document.getElementById("speedTimer").textContent=left;
+  if(left<=0){clearInterval(timer);finishSpeed()}
+ },100);
+}
+function tapSpeed(){
+ if(!speedRunning)return;
+ speedCount++;document.getElementById("speedMsg").textContent="🔥 "+speedCount+"/10";
+ if(speedCount>=10)finishSpeed();
+}
+function finishSpeed(){
+ if(!speedRunning)return;speedRunning=false;
+ document.getElementById("tapBtn").classList.add("hidden");
+ if(speedCount>=10){let t=((Date.now()-speedStart)/1000).toFixed(1);document.getElementById("speedMsg").textContent="⚡ Finished in "+t+"s! +30 points";points(30)}
+ else{document.getElementById("speedMsg").textContent="⏰ Time up! Try again.";wrong()}
+ document.getElementById("speedTimer").textContent="10";
+}
+function resetGame(){
+ if(confirm("Reset score, streak, lives and level?")){
+  score=0;streak=0;lives=3;save();showGame("quiz");
+ }
+}
+save();showGame("quiz");
+</script>
+</body>
+</html>
