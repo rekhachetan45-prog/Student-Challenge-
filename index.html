@@ -2,188 +2,162 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Challenge - Fun Games</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#eef2ff,#fff7ed);
-  color:#172033
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#eef2ff,#fff7ed);
+ color:#172033;
 }
 
 header{
-  background:linear-gradient(135deg,#4f46e5,#9333ea);
-  color:#fff;
-  text-align:center;
-  padding:28px 15px;
-  border-radius:0 0 30px 30px;
-  box-shadow:0 8px 25px #0002
+ background:linear-gradient(135deg,#4f46e5,#9333ea);
+ color:white;
+ text-align:center;
+ padding:28px 15px;
+ border-radius:0 0 30px 30px;
 }
 
-header h1{margin:0;font-size:32px}
-header p{margin:8px 0 0}
+header h1{
+ margin:0;
+ font-size:32px;
+}
+
+header p{
+ margin:8px 0 0;
+}
 
 .container{
-  max-width:900px;
-  margin:auto;
-  padding:16px
+ max-width:900px;
+ margin:auto;
+ padding:16px;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-  margin:15px 0
-}
-
-.stat{
-  background:#fff;
-  padding:13px 5px;
-  text-align:center;
-  border-radius:15px;
-  box-shadow:0 5px 18px #0001;
-  font-weight:bold
-}
-
-.stat span{
-  display:block;
-  font-size:20px;
-  color:#4f46e5;
-  margin-top:4px
-}
-
-.card{
-  background:#fff;
-  padding:20px;
-  margin:15px 0;
-  border-radius:22px;
-  box-shadow:0 7px 22px #0001
-}
-
-h2{
-  margin-top:0;
-  color:#4f46e5
+.lang{
+ text-align:right;
+ margin-bottom:10px;
 }
 
 button{
-  border:0;
-  border-radius:13px;
-  padding:12px 16px;
-  margin:5px;
-  background:#4f46e5;
-  color:white;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer
+ border:0;
+ padding:12px 16px;
+ border-radius:12px;
+ background:#4f46e5;
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+ margin:5px;
 }
 
 button:hover{
-  transform:translateY(-1px);
-  opacity:.92
+ opacity:.9;
 }
 
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed
+.lang button{
+ background:white;
+ color:#333;
+ border:1px solid #ddd;
 }
 
-.menu{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+ margin:15px 0;
 }
 
-.menu button{
-  padding:17px
+.stat{
+ background:white;
+ padding:14px 5px;
+ text-align:center;
+ border-radius:15px;
+ box-shadow:0 5px 18px #0001;
+ font-weight:bold;
+}
+
+.stat span{
+ display:block;
+ font-size:20px;
+ color:#4f46e5;
+ margin-top:5px;
+}
+
+.card{
+ background:white;
+ padding:20px;
+ margin:15px 0;
+ border-radius:22px;
+ box-shadow:0 7px 22px #0001;
+}
+
+h2{
+ margin-top:0;
+ color:#4f46e5;
+}
+
+.game-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+
+.game-btn{
+ padding:18px;
+ background:#f5f3ff;
+ color:#312e81;
+ border:2px solid #ddd6fe;
+ width:100%;
+}
+
+.game-btn strong{
+ display:block;
+ font-size:18px;
+ margin-bottom:5px;
 }
 
 .option{
-  display:block;
-  width:100%;
-  text-align:left;
-  background:#f1f5f9;
-  color:#172033;
-  margin:8px 0
-}
-
-.good{
-  background:#dcfce7!important;
-  color:#166534!important
-}
-
-.bad{
-  background:#fee2e2!important;
-  color:#991b1b!important
+ display:block;
+ width:100%;
+ text-align:left;
+ background:#f8fafc;
+ color:#172033;
+ border:1px solid #ddd;
+ margin:8px 0;
 }
 
 input{
-  padding:13px;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  font-size:16px;
-  max-width:100%
+ padding:12px;
+ border:1px solid #ccc;
+ border-radius:10px;
+ font-size:16px;
+ max-width:100%;
 }
 
-.msg{
-  font-weight:bold;
-  min-height:22px
-}
-
-.timer{
-  font-size:38px;
-  font-weight:bold;
-  text-align:center;
-  color:#dc2626
-}
-
-.big{
-  font-size:30px;
-  text-align:center;
-  letter-spacing:7px;
-  font-weight:bold
-}
-
-.hidden{
-  display:none
-}
-
-.progress{
-  height:9px;
-  background:#e5e7eb;
-  border-radius:10px;
-  overflow:hidden;
-  margin:10px 0
-}
-
-.progress div{
-  height:100%;
-  width:0;
-  background:#4f46e5;
-  transition:.3s
-}
-
-footer{
-  text-align:center;
-  padding:22px;
-  color:#64748b
+.result{
+ margin-top:12px;
+ padding:12px;
+ border-radius:12px;
+ background:#f1f5f9;
+ font-weight:bold;
 }
 
 @media(max-width:600px){
-  .stats{
-    grid-template-columns:repeat(2,1fr)
-  }
+ .stats{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-  .menu{
-    grid-template-columns:1fr
-  }
+ .game-grid{
+  grid-template-columns:1fr;
+ }
 
-  header h1{
-    font-size:27px
-  }
+ header h1{
+  font-size:26px;
+ }
 }
 </style>
 </head>
@@ -191,940 +165,923 @@ footer{
 <body>
 
 <header>
-<h1>🎓 Student Challenge</h1>
-<p>🎮 More Games • 🧠 More Challenges • 🏆 More Fun</p>
+<h1>🎓 <span id="title">Student Challenge</span></h1>
+<p id="subtitle">Fun Games • Learn • Challenge Yourself</p>
 </header>
 
 <div class="container">
 
+<div class="lang">
+<button onclick="setLang('hi')">🇮🇳 हिंदी</button>
+<button onclick="setLang('en')">🇬🇧 English</button>
+</div>
+
 <div class="stats">
-  <div class="stat">
-    ⭐ Score
-    <span id="score">0</span>
-  </div>
 
-  <div class="stat">
-    🔥 Streak
-    <span id="streak">0</span>
-  </div>
-
-  <div class="stat">
-    ❤️ Lives
-    <span id="lives">3</span>
-  </div>
-
-  <div class="stat">
-    🏅 Level
-    <span id="level">1</span>
-  </div>
+<div class="stat">
+<span id="scoreLabel">Score</span>
+<strong id="score">0</strong>
 </div>
 
-
-<div class="card">
-<h2>🎮 Choose Your Game</h2>
-
-<div class="menu">
-
-<button onclick="showGame('quiz')">
-🧠 Quiz Battle
-</button>
-
-<button onclick="showGame('math')">
-➕ Math Rush
-</button>
-
-<button onclick="showGame('memory')">
-🧩 Memory Master
-</button>
-
-<button onclick="showGame('word')">
-🔤 Word Scramble
-</button>
-
-<button onclick="showGame('guess')">
-🎯 Number Guess
-</button>
-
-<button onclick="showGame('speed')">
-⚡ Speed Challenge
-</button>
-
-</div>
+<div class="stat">
+<span id="streakLabel">Streak</span>
+<strong id="streak">0</strong>
 </div>
 
-
-<!-- QUIZ -->
-
-<div id="quiz" class="card game hidden">
-
-<h2>🧠 Quiz Battle</h2>
-
-<p id="q"></p>
-
-<div id="opts"></div>
-
-<p id="quizMsg" class="msg"></p>
-
-<button onclick="nextQuiz()">
-➡️ Next
-</button>
-
+<div class="stat">
+<span id="livesLabel">Lives</span>
+<strong id="lives">❤️❤️❤️</strong>
 </div>
 
-
-<!-- MATH -->
-
-<div id="math" class="card game hidden">
-
-<h2>➕ Math Rush</h2>
-
-<p>Solve this:</p>
-
-<div class="big" id="mathQ"></div>
-
-<input
-id="mathA"
-type="number"
-placeholder="Answer"
->
-
-<button onclick="checkMath()">
-Check
-</button>
-
-<p id="mathMsg" class="msg"></p>
-
+<div class="stat">
+<span id="levelLabel">Level</span>
+<strong id="level">1</strong>
 </div>
 
-
-<!-- MEMORY -->
-
-<div id="memory" class="card game hidden">
-
-<h2>🧩 Memory Master</h2>
-
-<p>
-Remember the sequence for a few seconds!
-</p>
-
-<div class="big" id="memDisplay">
-READY
 </div>
-
-<button onclick="startMemory()">
-▶️ Start
-</button>
-
-<div id="memInput" class="hidden">
-
-<input
-id="memA"
-placeholder="Enter sequence"
->
-
-<button onclick="checkMemory()">
-Check
-</button>
-
-</div>
-
-<p id="memMsg" class="msg"></p>
-
-</div>
-
-
-<!-- WORD -->
-
-<div id="word" class="card game hidden">
-
-<h2>🔤 Word Scramble</h2>
-
-<p>Unscramble this word:</p>
-
-<div class="big" id="scramble"></div>
-
-<input
-id="wordA"
-placeholder="Your answer"
->
-
-<button onclick="checkWord()">
-Check
-</button>
-
-<p id="wordMsg" class="msg"></p>
-
-</div>
-
-
-<!-- NUMBER GUESS -->
-
-<div id="guess" class="card game hidden">
-
-<h2>🎯 Number Guess</h2>
-
-<p>
-Guess a number between
-<b>1 and 50</b>.
-</p>
-
-<input
-id="guessA"
-type="number"
-placeholder="1-50"
->
-
-<button onclick="checkGuess()">
-Guess
-</button>
-
-<p id="guessMsg" class="msg"></p>
-
-</div>
-
-
-<!-- SPEED -->
-
-<div id="speed" class="card game hidden">
-
-<h2>⚡ Speed Challenge</h2>
-
-<p>
-Click START, then press the button
-<b>10 times</b> as quickly as you can!
-</p>
-
-<div class="timer" id="speedTimer">
-10
-</div>
-
-<button onclick="startSpeed()">
-🚀 START
-</button>
-
-<button
-id="tapBtn"
-class="hidden"
-onclick="tapSpeed()"
->
-TAP!
-</button>
-
-<p id="speedMsg" class="msg"></p>
-
-</div>
-
-
-<!-- PROGRESS -->
 
 <div class="card">
 
-<h2>🏆 Your Progress</h2>
+<h2 id="gamesTitle">🎮 Games</h2>
 
-<div class="progress">
-<div id="bar"></div>
-</div>
+<div class="game-grid">
 
-<p id="progressText">
-Earn points to unlock higher levels!
-</p>
+<button class="game-btn" onclick="showGame('quiz')">
+<strong id="quizName">🧠 Quiz Battle</strong>
+<span id="quizDesc">Test your knowledge</span>
+</button>
 
-<button onclick="resetGame()">
-🔄 Reset All Progress
+<button class="game-btn" onclick="showGame('math')">
+<strong id="mathName">➗ Math Rush</strong>
+<span id="mathDesc">Solve quickly</span>
+</button>
+
+<button class="game-btn" onclick="showGame('memory')">
+<strong id="memoryName">🧩 Memory Master</strong>
+<span id="memoryDesc">Remember the number</span>
+</button>
+
+<button class="game-btn" onclick="showGame('word')">
+<strong id="wordName">🔤 Word Scramble</strong>
+<span id="wordDesc">Make the correct word</span>
+</button>
+
+<button class="game-btn" onclick="showGame('guess')">
+<strong id="guessName">🎯 Number Guess</strong>
+<span id="guessDesc">Guess the number</span>
+</button>
+
+<button class="game-btn" onclick="showGame('speed')">
+<strong id="speedName">⚡ Speed Challenge</strong>
+<span id="speedDesc">Test your speed</span>
 </button>
 
 </div>
-
 </div>
 
+<div class="card" id="gameArea">
+<h2>🎮 Choose a game</h2>
+<p>Select any game above and start playing!</p>
+</div>
 
-<footer>
-© 2026 Student Challenge • Learn, Play & Challenge Yourself 🎉
-</footer>
-
+</div>
 
 <script>
 
-let score=+localStorage.getItem("scScore")||0;
+let lang=localStorage.getItem("scLang")||"en";
 
-let streak=
-+localStorage.getItem("scStreak")||0;
-
-let lives=
-+localStorage.getItem("scLives");
+let score=Number(localStorage.getItem("scScore"))||0;
+let streak=Number(localStorage.getItem("scStreak"))||0;
+let lives=Number(localStorage.getItem("scLives"));
 
 if(!lives) lives=3;
 
-let level=
-Math.floor(score/100)+1;
+const text={
 
-let quizIndex=0;
+en:{
+title:"Student Challenge",
+subtitle:"Fun Games • Learn • Challenge Yourself",
+score:"Score",
+streak:"Streak",
+lives:"Lives",
+level:"Level",
+games:"🎮 Games",
 
-let mathAnswer=0;
+quiz:"🧠 Quiz Battle",
+quizDesc:"Test your knowledge",
 
-let secret=0;
+math:"➗ Math Rush",
+mathDesc:"Solve quickly",
 
-let memValue="";
+memory:"🧩 Memory Master",
+memoryDesc:"Remember the number",
 
-let speedCount=0;
+word:"🔤 Word Scramble",
+wordDesc:"Make the correct word",
 
-let speedStart=0;
+guess:"🎯 Number Guess",
+guessDesc:"Guess the number",
 
-let speedRunning=false;
+speed:"⚡ Speed Challenge",
+speedDesc:"Test your speed",
 
+choose:"🎮 Choose a game",
+chooseText:"Select any game above and start playing!"
+},
 
-const quiz=[
+hi:{
+title:"Student Challenge",
+subtitle:"मज़ेदार गेम • सीखें • खुद को चुनौती दें",
+score:"स्कोर",
+streak:"लगातार जीत",
+lives:"जान",
+level:"लेवल",
+games:"🎮 गेम्स",
 
-[
-"Which planet is called the Red Planet?",
-["Earth","Mars","Venus","Saturn"],
-"Mars"
-],
+quiz:"🧠 क्विज़ बैटल",
+quizDesc:"अपनी जानकारी परखें",
 
-[
-"What is 12 × 2?",
-["20","22","24","26"],
-"24"
-],
+math:"➗ मैथ रश",
+mathDesc:"जल्दी से हल करें",
 
-[
-"How many continents are there?",
-["5","6","7","8"],
-"7"
-],
+memory:"🧩 मेमोरी मास्टर",
+memoryDesc:"नंबर याद रखें",
 
-[
-"Capital of India?",
-["Mumbai","Jaipur","New Delhi","Delhi"],
-"New Delhi"
-],
+word:"🔤 वर्ड स्क्रैम्बल",
+wordDesc:"सही शब्द बनाएं",
 
-[
-"Which gas do plants mainly use for photosynthesis?",
-["Oxygen","Carbon Dioxide","Nitrogen","Hydrogen"],
-"Carbon Dioxide"
-],
+guess:"🎯 नंबर गेस",
+guessDesc:"नंबर का अनुमान लगाएं",
 
-[
-"How many sides does a hexagon have?",
-["5","6","7","8"],
-"6"
-]
+speed:"⚡ स्पीड चैलेंज",
+speedDesc:"अपनी स्पीड परखें",
 
-];
+choose:"🎮 गेम चुनें",
+chooseText:"ऊपर से कोई भी गेम चुनें और खेलना शुरू करें!"
+}
 
+};
 
-const words=[
-"JAVASCRIPT",
-"CHALLENGE",
-"STUDENT",
-"COMPUTER",
-"PUZZLE",
-"LEARNING",
-"SCHOOL",
-"SCIENCE"
-];
+function setLang(l){
 
+ lang=l;
+
+ localStorage.setItem("scLang",l);
+
+ updateLanguage();
+
+ document.getElementById("gameArea").innerHTML=
+ "<h2>"+text[lang].choose+"</h2>"+
+ "<p>"+text[lang].chooseText+"</p>";
+
+}
+
+function updateLanguage(){
+
+ let t=text[lang];
+
+ document.getElementById("title").textContent=t.title;
+ document.getElementById("subtitle").textContent=t.subtitle;
+
+ document.getElementById("scoreLabel").textContent=t.score;
+ document.getElementById("streakLabel").textContent=t.streak;
+ document.getElementById("livesLabel").textContent=t.lives;
+ document.getElementById("levelLabel").textContent=t.level;
+
+ document.getElementById("gamesTitle").textContent=t.games;
+
+ document.getElementById("quizName").textContent=t.quiz;
+ document.getElementById("quizDesc").textContent=t.quizDesc;
+
+ document.getElementById("mathName").textContent=t.math;
+ document.getElementById("mathDesc").textContent=t.mathDesc;
+
+ document.getElementById("memoryName").textContent=t.memory;
+ document.getElementById("memoryDesc").textContent=t.memoryDesc;
+
+ document.getElementById("wordName").textContent=t.word;
+ document.getElementById("wordDesc").textContent=t.wordDesc;
+
+ document.getElementById("guessName").textContent=t.guess;
+ document.getElementById("guessDesc").textContent=t.guessDesc;
+
+ document.getElementById("speedName").textContent=t.speed;
+ document.getElementById("speedDesc").textContent=t.speedDesc;
+}
 
 function save(){
 
-level=Math.floor(score/100)+1;
+ localStorage.setItem("scScore",score);
+ localStorage.setItem("scStreak",streak);
+ localStorage.setItem("scLives",lives);
 
-localStorage.setItem(
-"scScore",
-score
-);
+ document.getElementById("score").textContent=score;
+ document.getElementById("streak").textContent=streak;
 
-localStorage.setItem(
-"scStreak",
-streak
-);
+ document.getElementById("lives").textContent=
+ "❤️".repeat(Math.max(0,lives));
 
-localStorage.setItem(
-"scLives",
-lives
-);
-
-document.getElementById("score").textContent=
-score;
-
-document.getElementById("streak").textContent=
-streak;
-
-document.getElementById("lives").textContent=
-lives;
-
-document.getElementById("level").textContent=
-level;
-
-document.getElementById("bar").style.width=
-(score%100)+"%";
-
-document.getElementById("progressText").textContent=
-"Level "+level+
-" • "+
-(100-score%100)+
-" points to next level";
-
+ document.getElementById("level").textContent=
+ Math.floor(score/100)+1;
 }
-
 
 function points(n=10){
 
-score+=n;
-
-streak++;
-
-save();
+ score+=n;
+ streak++;
+ save();
 
 }
-
 
 function wrong(){
 
-streak=0;
-
-lives--;
-
-save();
-
-if(lives<=0){
-
-alert(
-"💔 Game Over! Your score was "+
-score+
-". Lives restored to 3."
-);
-
-lives=3;
-
-save();
+ streak=0;
+ lives=Math.max(0,lives-1);
+ save();
 
 }
 
-}
+function showGame(game){
 
+ if(game==="quiz") loadQuiz();
 
-function showGame(id){
+ if(game==="math") newMath();
 
-document
-.querySelectorAll(".game")
-.forEach(x=>
-x.classList.add("hidden")
-);
+ if(game==="memory") startMemory();
 
-document
-.getElementById(id)
-.classList.remove("hidden");
+ if(game==="word") newWord();
 
+ if(game==="guess") newGuess();
 
-if(id==="quiz")
-loadQuiz();
-
-if(id==="math")
-newMath();
-
-if(id==="word")
-newWord();
-
-if(id==="guess")
-newGuess();
+ if(game==="speed") startSpeed();
 
 }
 
+
+/* =========================
+QUIZ BATTLE
+========================= */
+
+const quizzes={
+
+en:[
+
+{
+q:"What is the capital of India?",
+o:["Delhi","Mumbai","Jaipur","Kolkata"],
+a:0
+},
+
+{
+q:"How many days are there in a week?",
+o:["5","6","7","8"],
+a:2
+},
+
+{
+q:"Which planet is known as the Red Planet?",
+o:["Earth","Mars","Jupiter","Venus"],
+a:1
+},
+
+{
+q:"What is 10 + 5?",
+o:["12","15","20","25"],
+a:1
+},
+
+{
+q:"Which animal is called the King of the Jungle?",
+o:["Tiger","Lion","Elephant","Bear"],
+a:1
+}
+
+],
+
+hi:[
+
+{
+q:"भारत की राजधानी क्या है?",
+o:["दिल्ली","मुंबई","जयपुर","कोलकाता"],
+a:0
+},
+
+{
+q:"एक सप्ताह में कितने दिन होते हैं?",
+o:["5","6","7","8"],
+a:2
+},
+
+{
+q:"लाल ग्रह किसे कहा जाता है?",
+o:["पृथ्वी","मंगल","बृहस्पति","शुक्र"],
+a:1
+},
+
+{
+q:"10 + 5 कितना होता है?",
+o:["12","15","20","25"],
+a:1
+},
+
+{
+q:"जंगल का राजा किसे कहा जाता है?",
+o:["बाघ","शेर","हाथी","भालू"],
+a:1
+}
+
+]
+
+};
+
+let quizIndex=0;
 
 function loadQuiz(){
 
-let x=
-quiz[quizIndex%quiz.length];
+ quizIndex=
+ Math.floor(Math.random()*quizzes[lang].length);
 
-document.getElementById("q")
-.textContent=x[0];
+ const q=quizzes[lang][quizIndex];
 
-let box=
-document.getElementById("opts");
+ document.getElementById("gameArea").innerHTML=`
 
-box.innerHTML="";
+ <h2>${lang==="hi"?"🧠 क्विज़ बैटल":"🧠 Quiz Battle"}</h2>
 
-document.getElementById("quizMsg")
-.textContent="";
+ <h3>${q.q}</h3>
 
+ <div id="quizOptions"></div>
 
-x[1].forEach(o=>{
+ `;
 
-let b=
-document.createElement("button");
+ q.o.forEach((option,i)=>{
 
-b.className="option";
+  const btn=document.createElement("button");
 
-b.textContent=o;
+  btn.className="option";
 
-b.onclick=()=>
-answerQuiz(
-b,
-o,
-x[2]
-);
+  btn.textContent=option;
 
-box.appendChild(b);
+  btn.onclick=()=>answerQuiz(i);
 
-});
+  document
+  .getElementById("quizOptions")
+  .appendChild(btn);
+
+ });
+
+}
+
+function answerQuiz(i){
+
+ const q=quizzes[lang][quizIndex];
+
+ if(i===q.a){
+
+  points(10);
+
+  document.getElementById("gameArea").innerHTML+=`
+
+  <div class="result">
+  🎉 ${lang==="hi"?"सही जवाब! +10 अंक":"Correct! +10 points"}
+  </div>
+
+  <button onclick="loadQuiz()">
+  ${lang==="hi"?"अगला सवाल":"Next Question"}
+  </button>
+
+  `;
+
+ }else{
+
+  wrong();
+
+  document.getElementById("gameArea").innerHTML+=`
+
+  <div class="result">
+  ❌ ${lang==="hi"?"गलत जवाब!":"Wrong answer!"}
+  </div>
+
+  <button onclick="loadQuiz()">
+  ${lang==="hi"?"फिर खेलें":"Try Again"}
+  </button>
+
+  `;
+
+ }
 
 }
 
 
-function answerQuiz(b,a,c){
+/* =========================
+MATH RUSH
+========================= */
 
-document
-.querySelectorAll("#opts button")
-.forEach(x=>
-x.disabled=true
-);
-
-
-if(a===c){
-
-b.classList.add("good");
-
-document.getElementById("quizMsg")
-.textContent=
-"🎉 Correct! +10";
-
-points(10);
-
-}
-
-else{
-
-b.classList.add("bad");
-
-document.getElementById("quizMsg")
-.textContent=
-"❌ Wrong!";
-
-wrong();
-
-}
-
-}
-
-
-function nextQuiz(){
-
-quizIndex++;
-
-loadQuiz();
-
-}
-
+let mathAnswer=0;
 
 function newMath(){
 
-let a=
-Math.floor(Math.random()*30)+1;
+ const a=Math.floor(Math.random()*20)+1;
+ const b=Math.floor(Math.random()*20)+1;
 
-let b=
-Math.floor(Math.random()*30)+1;
+ const operations=["+","-","×"];
 
-mathAnswer=a+b;
+ const op=
+ operations[Math.floor(Math.random()*operations.length)];
 
-document.getElementById("mathQ")
-.textContent=
-a+" + "+b;
+ if(op==="+") mathAnswer=a+b;
 
-document.getElementById("mathA")
-.value="";
+ if(op==="-") mathAnswer=a-b;
 
-document.getElementById("mathMsg")
-.textContent="";
+ if(op==="×") mathAnswer=a*b;
+
+ document.getElementById("gameArea").innerHTML=`
+
+ <h2>
+ ${lang==="hi"?"➗ मैथ रश":"➗ Math Rush"}
+ </h2>
+
+ <h3>${a} ${op} ${b} = ?</h3>
+
+ <input
+ id="mathInput"
+ type="number"
+ placeholder="${lang==="hi"?"उत्तर लिखें":"Enter answer"}"
+ >
+
+ <br>
+
+ <button onclick="checkMath()">
+ ${lang==="hi"?"जमा करें":"Submit"}
+ </button>
+
+ <div id="mathResult"></div>
+
+ `;
 
 }
-
 
 function checkMath(){
 
-let m=
-document.getElementById("mathMsg");
+ const value=
+ Number(document.getElementById("mathInput").value);
 
-if(
-+document.getElementById("mathA").value
-===
-mathAnswer
-){
+ if(value===mathAnswer){
 
-m.textContent=
-"🎉 Correct! +15";
+  points(10);
 
-points(15);
+  document.getElementById("mathResult").innerHTML=`
 
-newMath();
+  <div class="result">
+  🎉 ${lang==="hi"?"सही! +10 अंक":"Correct! +10 points"}
+  </div>
+
+  <button onclick="newMath()">
+  ${lang==="hi"?"अगला सवाल":"Next Question"}
+  </button>
+
+  `;
+
+ }else{
+
+  wrong();
+
+  document.getElementById("mathResult").innerHTML=`
+
+  <div class="result">
+  ❌ ${lang==="hi"?"गलत उत्तर":"Wrong answer"}
+  </div>
+
+  <button onclick="newMath()">
+  ${lang==="hi"?"फिर खेलें":"Try Again"}
+  </button>
+
+  `;
+
+ }
 
 }
 
-else{
 
-m.textContent=
-"❌ Try again!";
+/* =========================
+MEMORY MASTER
+========================= */
 
-wrong();
-
-}
-
-}
-
+let memoryNumber="";
 
 function startMemory(){
 
-let len=
-Math.min(4+level,8);
+ memoryNumber=
+ Math.floor(10000+Math.random()*90000).toString();
 
-memValue="";
+ document.getElementById("gameArea").innerHTML=`
 
-for(
-let i=0;
-i<len;
-i++
-){
+ <h2>
+ ${lang==="hi"?"🧩 मेमोरी मास्टर":"🧩 Memory Master"}
+ </h2>
 
-memValue+=
-Math.floor(Math.random()*10);
+ <p>
+ ${lang==="hi"
+ ?"इस नंबर को याद करें:"
+ :"Remember this number:"}
+ </p>
 
-}
+ <h1>${memoryNumber}</h1>
 
+ <button onclick="hideMemory()">
+ ${lang==="hi"?"नंबर छुपाएं":"Hide Number"}
+ </button>
 
-document.getElementById("memDisplay")
-.textContent=
-memValue;
-
-document.getElementById("memInput")
-.classList.add("hidden");
-
-document.getElementById("memMsg")
-.textContent="";
-
-
-setTimeout(()=>{
-
-document.getElementById("memDisplay")
-.textContent=
-"❓ ".repeat(len);
-
-document.getElementById("memInput")
-.classList.remove("hidden");
-
-},
-Math.max(
-1200,
-2200-level*100
-));
+ `;
 
 }
 
+function hideMemory(){
+
+ document.getElementById("gameArea").innerHTML=`
+
+ <h2>
+ ${lang==="hi"?"🧩 मेमोरी मास्टर":"🧩 Memory Master"}
+ </h2>
+
+ <p>
+ ${lang==="hi"
+ ?"आपको कौन सा नंबर याद है?"
+ :"What number do you remember?"}
+ </p>
+
+ <input
+ id="memoryInput"
+ type="number"
+ placeholder="${lang==="hi"?"नंबर लिखें":"Enter number"}"
+ >
+
+ <br>
+
+ <button onclick="checkMemory()">
+ ${lang==="hi"?"जमा करें":"Submit"}
+ </button>
+
+ <div id="memoryResult"></div>
+
+ `;
+
+}
 
 function checkMemory(){
 
-let a=
-document.getElementById("memA")
-.value
-.replace(/\s/g,"");
+ const value=
+ document.getElementById("memoryInput").value;
 
-let m=
-document.getElementById("memMsg");
+ if(value===memoryNumber){
 
+  points(15);
 
-if(a===memValue){
+  document.getElementById("memoryResult").innerHTML=`
 
-m.textContent=
-"🧠 Amazing memory! +20";
+  <div class="result">
+  🎉 ${lang==="hi"
+  ?"बहुत बढ़िया! +15 अंक"
+  :"Excellent! +15 points"}
+  </div>
 
-points(20);
+  <button onclick="startMemory()">
+  ${lang==="hi"?"फिर खेलें":"Play Again"}
+  </button>
+
+  `;
+
+ }else{
+
+  wrong();
+
+  document.getElementById("memoryResult").innerHTML=`
+
+  <div class="result">
+  ❌ ${lang==="hi"?"गलत नंबर!":"Wrong number!"}
+  </div>
+
+  <button onclick="startMemory()">
+  ${lang==="hi"?"फिर खेलें":"Try Again"}
+  </button>
+
+  `;
+
+ }
 
 }
 
-else{
 
-m.textContent=
-"❌ Memory failed!";
+/* =========================
+WORD SCRAMBLE
+========================= */
 
-wrong();
+const words={
 
-}
+en:[
+"APPLE",
+"HOUSE",
+"WATER",
+"SCHOOL",
+"COMPUTER",
+"FRIEND"
+],
 
-}
+hi:[
+"कमल",
+"किताब",
+"पानी",
+"स्कूल",
+"भारत",
+"दोस्त"
+]
 
+};
 
-function shuffle(s){
-
-return s
-.split("")
-.sort(()=>
-Math.random()-.5
-)
-.join("");
-
-}
-
-
-let word="";
-
+let correctWord="";
 
 function newWord(){
 
-word=
-words[
-Math.floor(
-Math.random()*words.length
-)
-];
+ correctWord=
+ words[lang][
+ Math.floor(Math.random()*words[lang].length)
+ ];
 
-let s=
-shuffle(word);
+ let scrambled=
+ [...correctWord]
+ .sort(()=>Math.random()-0.5)
+ .join("");
 
-if(s===word)
-s=shuffle(word);
+ document.getElementById("gameArea").innerHTML=`
 
-document.getElementById("scramble")
-.textContent=s;
+ <h2>
+ ${lang==="hi"?"🔤 वर्ड स्क्रैम्बल":"🔤 Word Scramble"}
+ </h2>
 
-document.getElementById("wordA")
-.value="";
+ <p>
+ ${lang==="hi"
+ ?"इन अक्षरों से सही शब्द बनाएं:"
+ :"Make the correct word from these letters:"}
+ </p>
 
-document.getElementById("wordMsg")
-.textContent="";
+ <h1>${scrambled}</h1>
+
+ <input
+ id="wordInput"
+ placeholder="${lang==="hi"?"सही शब्द लिखें":"Enter word"}"
+ >
+
+ <br>
+
+ <button onclick="checkWord()">
+ ${lang==="hi"?"जमा करें":"Submit"}
+ </button>
+
+ <div id="wordResult"></div>
+
+ `;
 
 }
-
 
 function checkWord(){
 
-let m=
-document.getElementById("wordMsg");
+ const value=
+ document.getElementById("wordInput")
+ .value.trim();
 
-if(
-document.getElementById("wordA")
-.value
-.trim()
-.toUpperCase()
-===
-word
-){
+ if(value.toUpperCase()===
+ correctWord.toUpperCase()){
 
-m.textContent=
-"🎉 Correct! +15";
+  points(15);
 
-points(15);
+  document.getElementById("wordResult").innerHTML=`
 
-newWord();
+  <div class="result">
+  🎉 ${lang==="hi"
+  ?"सही शब्द! +15 अंक"
+  :"Correct word! +15 points"}
+  </div>
+
+  <button onclick="newWord()">
+  ${lang==="hi"?"अगला शब्द":"Next Word"}
+  </button>
+
+  `;
+
+ }else{
+
+  wrong();
+
+  document.getElementById("wordResult").innerHTML=`
+
+  <div class="result">
+  ❌ ${lang==="hi"?"गलत शब्द!":"Wrong word!"}
+  </div>
+
+  <button onclick="newWord()">
+  ${lang==="hi"?"फिर खेलें":"Try Again"}
+  </button>
+
+  `;
+
+ }
 
 }
 
-else{
 
-m.textContent=
-"❌ Try again!";
+/* =========================
+NUMBER GUESS
+========================= */
 
-wrong();
-
-}
-
-}
-
+let guessNumber=0;
 
 function newGuess(){
 
-secret=
-Math.floor(
-Math.random()*50
-)+1;
+ guessNumber=
+ Math.floor(Math.random()*50)+1;
 
-document.getElementById("guessA")
-.value="";
+ document.getElementById("gameArea").innerHTML=`
 
-document.getElementById("guessMsg")
-.textContent="";
+ <h2>
+ ${lang==="hi"?"🎯 नंबर गेस":"🎯 Number Guess"}
+ </h2>
+
+ <p>
+ ${lang==="hi"
+ ?"1 से 50 के बीच नंबर का अनुमान लगाएं।"
+ :"Guess a number between 1 and 50."}
+ </p>
+
+ <input
+ id="guessInput"
+ type="number"
+ min="1"
+ max="50"
+ >
+
+ <br>
+
+ <button onclick="checkGuess()">
+ ${lang==="hi"?"अनुमान लगाएं":"Guess"}
+ </button>
+
+ <div id="guessResult"></div>
+
+ `;
 
 }
-
 
 function checkGuess(){
 
-let n=
-+document.getElementById("guessA")
-.value;
+ const value=
+ Number(document.getElementById("guessInput").value);
 
-let m=
-document.getElementById("guessMsg");
+ if(value===guessNumber){
 
+  points(20);
 
-if(n===secret){
+  document.getElementById("guessResult").innerHTML=`
 
-m.textContent=
-"🎯 You got it! +25";
+  <div class="result">
+  🎉 ${lang==="hi"
+  ?"सही नंबर! +20 अंक"
+  :"Correct number! +20 points"}
+  </div>
 
-points(25);
+  <button onclick="newGuess()">
+  ${lang==="hi"?"फिर खेलें":"Play Again"}
+  </button>
 
-newGuess();
+  `;
+
+ }else if(value<guessNumber){
+
+  document.getElementById("guessResult").innerHTML=`
+
+  <div class="result">
+  ⬆️ ${lang==="hi"
+  ?"थोड़ा बड़ा नंबर है"
+  :"Try a higher number"}
+  </div>
+
+  `;
+
+ }else{
+
+  document.getElementById("guessResult").innerHTML=`
+
+  <div class="result">
+  ⬇️ ${lang==="hi"
+  ?"थोड़ा छोटा नंबर है"
+  :"Try a lower number"}
+  </div>
+
+  `;
+
+ }
 
 }
 
-else if(n<secret){
 
-m.textContent=
-"⬆️ Too low!";
+/* =========================
+SPEED CHALLENGE
+========================= */
 
-}
-
-else{
-
-m.textContent=
-"⬇️ Too high!";
-
-}
-
-}
-
+let speedCount=0;
+let speedStart=0;
+let speedRunning=false;
 
 function startSpeed(){
 
-if(speedRunning)
-return;
+ speedCount=0;
+ speedRunning=true;
+ speedStart=Date.now();
 
-speedRunning=true;
+ document.getElementById("gameArea").innerHTML=`
 
-speedCount=0;
+ <h2>
+ ${lang==="hi"
+ ?"⚡ स्पीड चैलेंज"
+ :"⚡ Speed Challenge"}
+ </h2>
 
-speedStart=Date.now();
+ <p>
+ ${lang==="hi"
+ ?"नीचे वाला बटन 10 बार जितनी जल्दी हो सके दबाएं!"
+ :"Tap the button 10 times as fast as you can!"}
+ </p>
 
-document.getElementById("tapBtn")
-.classList.remove("hidden");
+ <h1 id="tapCount">0 / 10</h1>
 
-document.getElementById("speedMsg")
-.textContent=
-"GO! TAP 10 TIMES!";
+ <button
+ onclick="tapSpeed()"
+ style="font-size:22px;padding:20px 30px"
+ >
+ ⚡ ${lang==="hi"?"टैप करें":"TAP"}
+ </button>
 
-
-let end=
-Date.now()+10000;
-
-
-let timer=
-setInterval(()=>{
-
-let left=
-Math.max(
-0,
-Math.ceil(
-(end-Date.now())/1000
-)
-);
-
-document.getElementById("speedTimer")
-.textContent=left;
-
-
-if(left<=0){
-
-clearInterval(timer);
-
-finishSpeed();
+ `;
 
 }
-
-},100);
-
-}
-
 
 function tapSpeed(){
 
-if(!speedRunning)
-return;
+ if(!speedRunning)return;
 
-speedCount++;
+ speedCount++;
 
-document.getElementById("speedMsg")
-.textContent=
-"🔥 "+
-speedCount+
-"/10";
+ document.getElementById("tapCount")
+ .textContent=speedCount+" / 10";
 
-if(speedCount>=10)
-finishSpeed();
+ if(speedCount>=10){
+  finishSpeed();
+ }
 
 }
-
 
 function finishSpeed(){
 
-if(!speedRunning)
-return;
+ if(!speedRunning)return;
 
-speedRunning=false;
+ speedRunning=false;
 
-document.getElementById("tapBtn")
-.classList.add("hidden");
+ const time=
+ ((Date.now()-speedStart)/1000).toFixed(2);
 
+ points(20);
 
-if(speedCount>=10){
+ document.getElementById("gameArea").innerHTML=`
 
-let t=
-(
-(Date.now()-speedStart)/1000
-).toFixed(1);
+ <h2>
+ ${lang==="hi"
+ ?"🏆 चैलेंज पूरा!"
+ :"🏆 Challenge Complete!"}
+ </h2>
 
-document.getElementById("speedMsg")
-.textContent=
-"⚡ Finished in "+
-t+
-"s! +30 points";
+ <h1>
+ ${time}
+ ${lang==="hi"?"सेकंड":"seconds"}
+ </h1>
 
-points(30);
+ <div class="result">
+ 🎉 ${lang==="hi"
+ ?"बहुत बढ़िया! +20 अंक"
+ :"Great job! +20 points"}
+ </div>
 
-}
+ <button onclick="startSpeed()">
+ ${lang==="hi"?"फिर खेलें":"Play Again"}
+ </button>
 
-else{
-
-document.getElementById("speedMsg")
-.textContent=
-"⏰ Time up! Try again.";
-
-wrong();
-
-}
-
-
-document.getElementById("speedTimer")
-.textContent="10";
+ `;
 
 }
 
 
-function resetGame(){
+/* START */
 
-if(
-confirm(
-"Reset score, streak, lives and level?"
-)
-){
-
-score=0;
-
-streak=0;
-
-lives=3;
-
+updateLanguage();
 save();
-
-showGame("quiz");
-
-}
-
-}
-
-
-save();
-
-showGame("quiz");
+loadQuiz();
 
 </script>
 
